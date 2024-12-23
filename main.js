@@ -8,7 +8,18 @@ function generatePassword(length) {
     return password;
 }
 
+function validatePassword(password) {
+    const hasLowercase = /[a-z]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+~`|}{[\]:;?><,./-=]/.test(password);
+    return hasLowercase && hasUppercase && hasDigit && hasSpecialChar;
+}
+
 // Example usage:
 const passwordLength = 12;
-const newPassword = generatePassword(passwordLength);
+let newPassword = generatePassword(passwordLength);
+while (!validatePassword(newPassword)) {
+    newPassword = generatePassword(passwordLength);
+}
 console.log("Generated Password:", newPassword);
