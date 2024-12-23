@@ -16,8 +16,16 @@ function validatePassword(password) {
     return hasLowercase && hasUppercase && hasDigit && hasSpecialChar;
 }
 
+function getPasswordLength() {
+    let length = parseInt(prompt("Enter the desired password length:"));
+    while (isNaN(length) || length < 1) {
+        length = parseInt(prompt("Invalid input. Please enter a valid number for the password length:"));
+    }
+    return length;
+}
+
 // Example usage:
-const passwordLength = 12;
+const passwordLength = getPasswordLength();
 let newPassword = generatePassword(passwordLength);
 while (!validatePassword(newPassword)) {
     newPassword = generatePassword(passwordLength);
