@@ -13,6 +13,10 @@ A simple and efficient tool for generating secure and customizable passwords. Su
 1. Clone the repository:
     ```sh
     git clone https://github.com/yourusername/Password-Generator.git
+    ```
+
+2. Navigate to the project directory:
+    ```sh
     cd Password-Generator
     ```
 
