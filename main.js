@@ -1,7 +1,7 @@
-function generatePassword(length) {
+function generatePassword() {
     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
     let password = "";
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < charset.length; i++) {
         const randomIndex = Math.floor(Math.random() * charset.length);
         password += charset[randomIndex];
     }
@@ -25,9 +25,5 @@ function getPasswordLength() {
 }
 
 // Example usage:
-const passwordLength = getPasswordLength();
-let newPassword = generatePassword(passwordLength);
-while (!validatePassword(newPassword)) {
-    newPassword = generatePassword(passwordLength);
-}
+const newPassword = generatePassword();
 console.log("Generated Password:", newPassword);
