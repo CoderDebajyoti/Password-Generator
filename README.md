@@ -20,7 +20,12 @@ A simple and efficient tool for generating secure and customizable passwords. Su
     cd Password-Generator
     ```
 
-3. Open `index.html` in your web browser to use the password generator with a graphical interface.
+3. Compile the SCSS to CSS:
+    ```sh
+    sass styles.scss styles.css
+    ```
+
+4. Open `index.html` in your web browser to use the password generator with a graphical interface.
 
 ## Example
 
