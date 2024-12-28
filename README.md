@@ -30,10 +30,9 @@ A simple and efficient tool for generating secure and customizable passwords. Su
 ## Example
 
 ```javascript
-const passwordLength = getPasswordLength();
-let newPassword = generatePassword(passwordLength);
+const newPassword = generatePassword(16);
 while (!validatePassword(newPassword)) {
-    newPassword = generatePassword(passwordLength);
+    newPassword = generatePassword(16);
 }
 console.log("Generated Password:", newPassword);
 ```
