@@ -16,14 +16,6 @@ function validatePassword(password) {
     return hasLowercase && hasUppercase && hasDigit && hasSpecialChar;
 }
 
-function getPasswordLength() {
-    let length = parseInt(prompt("Enter the desired password length:"));
-    while (isNaN(length) || length < 1) {
-        length = parseInt(prompt("Invalid input. Please enter a valid number for the password length:"));
-    }
-    return length;
-}
-
 function updatePasswordDisplay(password) {
     const passwordDisplay = document.getElementById("passwordDisplay");
     passwordDisplay.textContent = password;
@@ -39,11 +31,12 @@ function copyPasswordToClipboard() {
     });
 }
 
+const DEFAULT_PASSWORD_LENGTH = 16;
+
 document.getElementById("generateButton").addEventListener("click", () => {
-    const passwordLength = getPasswordLength();
-    let newPassword = generatePassword(passwordLength);
+    let newPassword = generatePassword(DEFAULT_PASSWORD_LENGTH);
     while (!validatePassword(newPassword)) {
-        newPassword = generatePassword(passwordLength);
+        newPassword = generatePassword(DEFAULT_PASSWORD_LENGTH);
     }
     updatePasswordDisplay(newPassword);
 });
