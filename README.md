@@ -20,12 +20,7 @@ A simple and efficient tool for generating secure and customizable passwords. Su
     cd Password-Generator
     ```
 
-2. Run the password generator:
-    ```sh
-    node main.js
-    ```
-
-3. Follow the prompts to generate a secure password.
+3. Open `index.html` in your web browser to use the password generator with a graphical interface.
 
 ## Example
 
