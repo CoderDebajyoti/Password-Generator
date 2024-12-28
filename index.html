@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
+    <style>
+        #passwordContainer {
+            display: flex;
+            align-items: center;
+        }
+        #copyButton {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Password Generator</h1>
     <button id="generateButton">Generate Password</button>
-    <button id="copyButton">Copy Password</button>
-    <p id="passwordDisplay"></p>
+    <div id="passwordContainer">
+        <p id="passwordDisplay"></p>
+        <button id="copyButton">📋</button>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
