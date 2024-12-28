@@ -32,6 +32,10 @@ button:hover {
 #passwordContainer {
     display: flex;
     align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
 }
 
 #passwordDisplay {
