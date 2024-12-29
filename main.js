@@ -1,5 +1,10 @@
-function generatePassword(length) {
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+function generatePassword(length, options) {
+    let charset = "";
+    if (options.includeLowercase) charset += "abcdefghijklmnopqrstuvwxyz";
+    if (options.includeUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (options.includeNumbers) charset += "0123456789";
+    if (options.includeSpecialChars) charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+    
     let password = "";
     for (let i = 0; i < length; i++) {
         const randomIndex = Math.floor(Math.random() * charset.length);
@@ -8,11 +13,11 @@ function generatePassword(length) {
     return password;
 }
 
-function validatePassword(password) {
-    const hasLowercase = /[a-z]/.test(password);
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasDigit = /\d/.test(password);
-    const hasSpecialChar = /[!@#$%^&*()_+~`|}{[\]:;?><,./-=]/.test(password);
+function validatePassword(password, options) {
+    const hasLowercase = options.includeLowercase ? /[a-z]/.test(password) : true;
+    const hasUppercase = options.includeUppercase ? /[A-Z]/.test(password) : true;
+    const hasDigit = options.includeNumbers ? /\d/.test(password) : true;
+    const hasSpecialChar = options.includeSpecialChars ? /[!@#$%^&*()_+~`|}{[\]:;?><,./-=]/.test(password) : true;
     return hasLowercase && hasUppercase && hasDigit && hasSpecialChar;
 }
 
@@ -34,9 +39,15 @@ function copyPasswordToClipboard() {
 const DEFAULT_PASSWORD_LENGTH = 16;
 
 document.getElementById("generateButton").addEventListener("click", () => {
-    let newPassword = generatePassword(DEFAULT_PASSWORD_LENGTH);
-    while (!validatePassword(newPassword)) {
-        newPassword = generatePassword(DEFAULT_PASSWORD_LENGTH);
+    const options = {
+        includeUppercase: document.getElementById("includeUppercase").checked,
+        includeLowercase: document.getElementById("includeLowercase").checked,
+        includeNumbers: document.getElementById("includeNumbers").checked,
+        includeSpecialChars: document.getElementById("includeSpecialChars").checked
+    };
+    let newPassword = generatePassword(DEFAULT_PASSWORD_LENGTH, options);
+    while (!validatePassword(newPassword, options)) {
+        newPassword = generatePassword(DEFAULT_PASSWORD_LENGTH, options);
     }
     updatePasswordDisplay(newPassword);
 });
@@ -44,5 +55,10 @@ document.getElementById("generateButton").addEventListener("click", () => {
 document.getElementById("copyButton").addEventListener("click", copyPasswordToClipboard);
 
 // Example usage:
-const newPassword = generatePassword(16);
+const newPassword = generatePassword(16, {
+    includeUppercase: true,
+    includeLowercase: true,
+    includeNumbers: true,
+    includeSpecialChars: true
+});
 console.log("Generated Password:", newPassword);
